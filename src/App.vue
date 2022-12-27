@@ -50,28 +50,28 @@ let emailAddress = ref(null);
     <div class="flex justify-center">
       <h1 class="text-4xl m-4">Hello my name is Guy</h1>
     </div>
-    <a href="https://github.com/guylil" class="flex justify-center">
-      <img
-        class="h-48 w-48 rounded-2xl"
-        src="https://lexica-serve-encoded-images2.sharif.workers.dev/sm/27fae0a8-cc73-4861-9680-225b456f7cc6"
-        alt="My Pic"
-      />
-    </a>
+    <div class="flex justify-center">
+      <a href="https://github.com/guylil">
+        <img
+          class="h-48 w-48 rounded-2xl"
+          src="https://lexica-serve-encoded-images2.sharif.workers.dev/sm/27fae0a8-cc73-4861-9680-225b456f7cc6"
+          alt="My Pic"
+        />
+      </a>
+    </div>
     <div class="flex justify-center">
       <div class="m-8 text-4xl">Come, see my projects...</div>
     </div>
     <div class="grid grid-cols-3 gap-5 mt-4 place-content-around">
-      <a
-        class="flex justify-center"
-        href="https://github.com/guylil/jokeMachine"
-        v-for="item in items"
-      >
-        <img
-          :src="item.url"
-          :alt="item.alt"
-          class="h-48 hover:scale-110 transition duration-300 cursor-pointer hover:ring-2 ring-offset-4 ring-green-700 rounded-2xl"
-        />
-      </a>
+      <div class="flex justify-center" v-for="item in items">
+        <a href="https://github.com/guylil/jokeMachine">
+          <img
+            class="h-48 hover:scale-110 transition duration-300 cursor-pointer hover:ring-2 ring-offset-4 ring-green-700 rounded-2xl"
+            :src="item.url"
+            :alt="item.alt"
+          />
+        </a>
+      </div>
     </div>
     <div class="mt-8 flex justify-center">
       <div class="flex-col">
@@ -90,7 +90,11 @@ let emailAddress = ref(null);
         <div v-else>Email sent to {{ emailAddress }}</div>
         <div
           class="mt-4 flex justify-center cursor-pointer hover:bg-cyan-500 rounded"
-          @click="() => (sent = true)"
+          @click="
+            () => {
+              if (emailAddress) sent = true;
+            }
+          "
         >
           <button>{{ !sent ? "Send" : "Thanks!" }}</button>
         </div>
