@@ -1,5 +1,5 @@
 <script setup>
-import {ref} from "vue";
+import { ref } from "vue";
 import { RouterLink, RouterView } from "vue-router";
 import router from "@/router";
 
@@ -41,7 +41,8 @@ const items = [
     alt: "Cyber dragon",
   },
 ];
-let sent = ref(false)
+let sent = ref(false);
+let emailAddress = ref(null);
 </script>
 
 <template>
@@ -59,8 +60,12 @@ let sent = ref(false)
     <div class="flex justify-center">
       <div class="m-8 text-4xl">Come, see my projects...</div>
     </div>
-    <div class="grid grid-cols-3 grid-rows-2 gap-4 place-items-center mt-4">
-      <a href="https://github.com/guylil/jokeMachine" v-for="item in items">
+    <div class="grid grid-cols-3 gap-5 mt-4 place-content-around">
+      <a
+        class="flex justify-center"
+        href="https://github.com/guylil/jokeMachine"
+        v-for="item in items"
+      >
         <img
           :src="item.url"
           :alt="item.alt"
@@ -70,23 +75,26 @@ let sent = ref(false)
     </div>
     <div class="mt-8 flex justify-center">
       <div class="flex-col">
-        <div>
+        <div v-if="!sent">
           <label for="form"> Hi, wanna see more? </label>
         </div>
-        <div>
+        <div v-if="!sent">
           <input
-              type="email"
-              id="form"
-              class="border-b-2 border-b-cyan-500 mt-4 h-8 focus:outline-none focus:bg-gray-200 rounded-t"
-              placeholder="Enter your email here"
+            type="email"
+            id="form"
+            class="border-b-2 border-b-cyan-500 mt-4 h-8 focus:outline-none focus:bg-gray-200 rounded-t"
+            placeholder="Enter your email here"
+            v-model="emailAddress"
           />
         </div>
-        <div class="mt-4 flex justify-center cursor-pointer hover:bg-cyan-500 rounded" @click="()=>sent=true">
-          <button>{{!sent? 'Send' : 'Thanks!'}}</button>
+        <div v-else>Email sent to {{ emailAddress }}</div>
+        <div
+          class="mt-4 flex justify-center cursor-pointer hover:bg-cyan-500 rounded"
+          @click="() => (sent = true)"
+        >
+          <button>{{ !sent ? "Send" : "Thanks!" }}</button>
         </div>
       </div>
-
-
     </div>
   </div>
 </template>
