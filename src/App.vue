@@ -11,24 +11,24 @@ let emailAddress = ref(null);
 </script>
 
 <template>
-  <div class="mt-26">
-    <div class="flex justify-center">
-      <h1 class="text-4xl m-4">Hello my name is Guy</h1>
+  <div>
+    <div class="flex-row">
+      <h1 class="title">Hello my name is Guy</h1>
     </div>
-    <div class="flex justify-center">
+    <div class="flex-row">
       <a href="https://github.com/guylil">
         <img
-          class="h-48 w-48 rounded-2xl"
+          class="title__pic"
           src="https://lexica-serve-encoded-images2.sharif.workers.dev/sm/27fae0a8-cc73-4861-9680-225b456f7cc6"
           alt="My Pic"
         />
       </a>
     </div>
-    <div class="flex justify-center">
-      <div class="m-8 text-4xl">Come, see my projects...</div>
+    <div class="flex-row">
+      <div class="title__subtitle">Come, see my projects...</div>
     </div>
-    <div class="grid grid-cols-3 gap-5 mt-4 place-content-around">
-      <div class="flex justify-center" v-for="item in items">
+    <div class="body">
+      <div class="flex-row" v-for="item in items">
         <a href="https://github.com/guylil/jokeMachine">
           <img
             class="h-48 hover:scale-110 transition duration-300 cursor-pointer hover:ring-2 ring-offset-4 ring-green-700 rounded-2xl"
@@ -38,8 +38,8 @@ let emailAddress = ref(null);
         </a>
       </div>
     </div>
-    <div class="mt-8 flex justify-center">
-      <div class="flex-col">
+    <div class="form flex-row">
+      <div>
         <div v-if="!sent">
           <label for="form"> Hi, wanna see more? </label>
         </div>
@@ -54,7 +54,7 @@ let emailAddress = ref(null);
         </div>
         <div v-else>Email sent to {{ emailAddress }}</div>
         <div
-          class="mt-4 flex justify-center cursor-pointer hover:bg-cyan-500 rounded"
+          class="mt-4 flex-row cursor-pointer hover:bg-cyan-500 rounded"
           @click="
             () => {
               if (emailAddress) sent = true;
@@ -69,5 +69,35 @@ let emailAddress = ref(null);
 </template>
 
 <style scoped>
+.flex-row {
+  display: flex;
+  justify-content: center;
+}
+
+.title {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  margin: 1rem;
+}
+.title__pic {
+  height: 12rem;
+  width: 12rem;
+  border-radius: 1rem;
+}
+.title__subtitle {
+  margin: 2rem;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+.body {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-top: 1rem;
+  place-content: space-around;
+}
+.form {
+  margin-top: 24px;
+}
 
 </style>
